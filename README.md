@@ -106,7 +106,7 @@ This project provisions a full AWS ECS infrastructure using Terraform to deploy 
 
 **Abdikarim Yusuf**
 DevOps Enthusiast | Cloud Learner | Automation Lover
-[LinkedIn](https://www.linkedin.com/) | [GitHub](https://github.com/abdikarimyusuf)
+[LinkedIn](https://www.linkedin.com/in/abdikarim-yusuf-2177b7185/) | [GitHub](https://github.com/abdikarimyusuf)
 
 ---
 
