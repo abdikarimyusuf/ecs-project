@@ -1,30 +1,30 @@
-
-resource "aws_iam_role_policy_attachment" "ecs_task_execution_policy" {
-  role       = aws_iam_role.task-e-r.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+resource "aws_lb" "ecs-lb" {
+  name = "ecs-lb"
+  internal = false # public
+  load_balancer_type ="application"
+  security_groups = [aws_security_group.alb-sg.id]
+  subnets = [aws_subnet.public_az1.id,aws_subnet.public_az2.id]
+  
 }
 
-resource "aws_iam_role_policy_attachment" "ecs_task_execution_secrets_policy" {
-  role       = aws_iam_role.task-e-r.name
-  policy_arn = aws_iam_policy.ecs_secrets_access.arn
-}
-data "aws_iam_role" "existing_ecs_task_execution_role" {
-  name = "ECSrole" 
-}
-resource "aws_iam_policy" "ecs_secrets_access" {
-  name        = "ecs-task-secrets-access"
-  description = "Allows ECS task to get secret from Secrets Manager"
+resource "aws_lb_target_group" "ecs-tg" {
 
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "secretsmanager:GetSecretValue"
-        ],
-        Resource = "arn:aws:secretsmanager:eu-west-2:533567531054:secret:secret_docker-P8kAtn"
-      }
-    ]
-  })
+  name = "ecs-tg"
+  port = 5002
+  protocol = "HTTP"
+  vpc_id = aws_vpc.main.id
+  target_type = "ip"
+
+    health_check {
+    path                = "/"
+    port                = "5002"
+    protocol            = "HTTP"
+    matcher             = "200"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+  }
+
+   
 }
