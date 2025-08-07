@@ -110,4 +110,4 @@ DevOps Enthusiast | Cloud Learner | Automation Lover
 
 ---
 
-> This project was a major milestone in my DevOps learning journey, blending cloud infrastructure, containerization, and automation. Proud to have built and debugged this from scratch with the help of research and community tools like ChatGPT. 🚀
+> This project was a major milestone in my DevOps learning journey, blending cloud infrastructure, containerization, and automation. Proud to have built and debugged this from scratch with the help of research.
