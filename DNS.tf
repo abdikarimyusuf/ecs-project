@@ -3,11 +3,7 @@ provider "aws" {
   region = "eu-west-2"  # ACM certs for CloudFront must be in us-east-1
 }
 
-# Get the Route 53 zone for your domain
-data "aws_route53_zone" "main" {
-  name         = "abdikarim.co.uk"
-  private_zone = false
-}
+
 
 # Request the certificate
 resource "aws_acm_certificate" "cert" {

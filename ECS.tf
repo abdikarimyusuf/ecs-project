@@ -40,9 +40,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_secrets_policy" {
   role       = aws_iam_role.task-e-r.name
   policy_arn = aws_iam_policy.ecs_secrets_access.arn
 }
-data "aws_iam_role" "existing_ecs_task_execution_role" {
-  name = "ECSrole" 
-}
+
 resource "aws_iam_policy" "ecs_secrets_access" {
   name        = "ecs-task-secrets-access"
   description = "Allows ECS task to get secret from Secrets Manager"
